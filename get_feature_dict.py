@@ -12,13 +12,19 @@ data = open('oneyear.json', 'r')
 feature_dict_file = open('feature.txt','w')
 
 visited = set()
+messages = []
 for line in data:
-    tweet = json.load(line.decode('utf-8'))
+    tweet = json.loads(line.decode('utf-8'))
+    message = tweet['text']
 
-    tokens = nltk.word_tokenize(tweet['test'])
+# for tweet in messages:
+#     messages_file.write(tweet)
+#     messages_file.write('\n')
+
+    tokens = nltk.word_tokenize(message)
     for token in tokens:
         if token not in visited:
             visited.add(token)
-            feature_dict_file.write(token)
+            feature_dict_file.write(token.encode('ascii','ignore'))
             feature_dict_file.write('\n')
 
