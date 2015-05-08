@@ -18,6 +18,7 @@ for line in data:
     tweet = json.loads(line.decode('utf-8'))
     message = tweet['text']
     message = re.sub('https?:\/\/.*[\r\n]*','',message)
+    # filtered = filter(lambda x:  not re.match(r'^\s*$', x), message)
 # for tweet in messages:
 #     messages_file.write(tweet)
 #     messages_file.write('\n')
@@ -26,6 +27,6 @@ for line in data:
     for token in tokens:
         if token not in visited:
             visited.add(token)
-            feature_dict_file.write(token.encode('ascii','ignore'))
+            feature_dict_file.write(token.encode('utf-8'))
             feature_dict_file.write('\n')
 
