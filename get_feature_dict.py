@@ -3,6 +3,7 @@ import nltk
 # from collections import defaultdict
 # from sklearn.feature_extraction.text import CountVectorizer
 import json
+import re, string
 
 start = timeit.default_timer()
 
@@ -16,7 +17,7 @@ messages = []
 for line in data:
     tweet = json.loads(line.decode('utf-8'))
     message = tweet['text']
-
+    message = re.sub('https?:\/\/.*[\r\n]*','',message)
 # for tweet in messages:
 #     messages_file.write(tweet)
 #     messages_file.write('\n')
